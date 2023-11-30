@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "dev": "concurrently \"npm start\" \"cd ../ && npm start\""
+    "install-server": "cd proxy-server/server && npm install",
+    "start": "node proxy-server/server/index.js",
+    "install-client": "cd proxy-server/src && npm install",
+    "client": "cd proxy-server/src && npm start",
+    "dev": "concurrently -n 'server,client' -c 'red,green'  \"nodemon proxy-server/server/index.js\" \"npm run client\"",
+    "build": "cd proxy-server/src && npm run build",
+    "heroku-postbuild": "npm run install-server && cd proxy-server/src && npm run build"
   },
   "keywords": [],
   "author": "",
