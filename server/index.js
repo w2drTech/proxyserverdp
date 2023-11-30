@@ -16,9 +16,18 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
-app.set('trust proxy',1);
+app.set("trust proxy", 1);
 app.use(cors());
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.setHeader("X-Forwarded-Host", req.hostname);
+  next();
+});
 if (process.env.NODE_ENV === "production") {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
 }
