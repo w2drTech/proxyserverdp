@@ -1,7 +1,7 @@
 {
   "name": "dp-center-monitoring-system",
   "version": "0.1.0",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://proxy-server-dp-35618cfa6507.herokuapp.com",
   "babel": {
     "presets": [
       "react-app"
